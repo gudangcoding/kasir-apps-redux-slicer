@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { MenuUtama } from "./components/MenuUtama";
+import { Home, User, Profil, Kategori, Produk, Order } from "./pages";
+import { Container } from "react-bootstrap";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <MenuUtama />
+      <Container className="mb-5" variant="fluid">
+        <Provider store={store}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/user" element={<User />} />
+              <Route path="/profil" element={<Profil />} />
+              <Route path="/kategori" element={<Kategori />} />
+              <Route path="/produk" element={<Produk />} />
+              <Route path="/order" element={<Order />} />
+            </Routes>
+          </BrowserRouter>
+        </Provider>
+      </Container>
+    </>
   );
 }
 
